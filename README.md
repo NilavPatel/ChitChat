@@ -1,0 +1,3 @@
+# ChitChat
+
+## SignalR chat application
