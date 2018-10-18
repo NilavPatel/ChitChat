@@ -12,6 +12,17 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("messagesList").appendChild(li);
 });
 
+var typingTimer;
+connection.on("typing", function (user) {    
+    document.getElementById("isTyping").textContent = user + " is typing...";
+    if(typingTimer){
+        clearTimeout(typingTimer);
+    }
+    typingTimer = setTimeout(function(){        
+        document.getElementById("isTyping").textContent = "";
+    }, 3000);
+});
+
 connection.start().catch(function (err) {
     return console.error(err.toString());
 });
@@ -25,4 +36,9 @@ document.getElementById("sendButton").addEventListener("click", function (event)
         return console.error(err.toString());
     });
     event.preventDefault();
+});
+
+document.getElementById("messageInput").addEventListener("keypress", function (event) {
+    var user = document.getElementById("userInput").value;   
+    connection.invoke("SendTyping", user);
 });
