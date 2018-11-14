@@ -41,6 +41,11 @@ connection.on("typing", function (user) {
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
+    sendMessage();
+    event.preventDefault();
+});
+
+function sendMessage(){
     var currentUser = document.getElementById("userInput").value;
     if (currentUser === undefined || currentUser === null || currentUser.length === 0) {
         alert("User name is missing");
@@ -52,8 +57,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     }).catch(function (err) {
         return console.error(err.toString());
     });
-    event.preventDefault();
-});
+}
 
 document.getElementById("messageInput").addEventListener("keypress", function (event) {
     var currentUser = document.getElementById("userInput").value;
@@ -61,6 +65,13 @@ document.getElementById("messageInput").addEventListener("keypress", function (e
         return;
     }
     connection.invoke("SendTyping", currentUser);
+});
+
+document.getElementById("messageInput").addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        sendMessage();
+        event.preventDefault();
+    }
 });
 
 function OnConnected() {

@@ -1,7 +1,7 @@
 ﻿@page
 <div class="container">  
     <div class="row border">
-        <div class="col-md-9">
+        <div class="col-md-9 border-right">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row border-bottom">
@@ -10,24 +10,39 @@
                         </div>
                     </div>                    
                     <div class="row">                        
-                        <div class="col-md-12 message-box">
-                            <input type="hidden" id="userInput" />            
-                            Message : <input type="text" id="messageInput" />
-                            <input type="button" id="sendButton" value="Send Message" />
+                        <div class="col-md-12">                            
+                            <input type="hidden" id="userInput" />      
+                            <div class="col-md-1">Message</div>      
+                            <div class="col-md-8">
+                                 <input type="text" id="messageInput" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" id="sendButton" value="Send Message" />
+                            </div>
                         </div>
                     </div>
                      <div class="row">
                         <div class="col-md-12">
-                            <label id="isTyping" />
+                            <label id="isTyping">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 border-left user-box">
-            <h3><span>You as <b><label id="lbluser"></label></b></span></h3>
-            <h3>Active Users</h3>
-            <div id="activeUserList"></div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><span>You as <b><i><label id="lbluser"></label></b></i></span></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Active Users</h5>
+                </div>
+                <div class="col-md-12">                    
+                    <div id="activeUserList"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -43,15 +58,6 @@
         background-color: lightblue;
         margin-left: 25px !important;
     }
-    .border-left{
-        border-left: 1px solid gray;
-    }
-    .border-bottom{
-        border-bottom: 1px solid gray;
-    }
-    .message-box, .user-box{
-        padding:10px;
-    }
     #messagesList{
         height:500px;
         overflow: auto;
@@ -66,13 +72,11 @@
         border-radius: 15px;
         overflow-wrap: break-word;
     }
-    #activeUserList{
-        height:565px;
+    #activeUserList{        
         overflow: auto;
         padding:10px;
-    }
-    .border{
-        border: 1px solid gray;
+        background-color: lightgray;
+        height:460px;
     }
     #activeUserList ul {
         list-style: none; /* Remove default bullets */
@@ -85,6 +89,20 @@
         display: inline-block; /* Needed to add space between the bullet and the text */ 
         width: 1em; /* Also needed for space (tweak if needed) */
         margin-left: -1em; /* Also needed for space (tweak if needed) */
+    }
+    .border-right{
+        border-right: 1px solid black;
+    }
+    .border-bottom{
+        margin-bottom: 5px;
+        border-bottom: 1px solid black;
+    }
+    .border{
+        border: 2px solid black;
+        padding :5px;
+    }
+    #messageInput{
+        width:100%
     }
 </style>
 <script>    
